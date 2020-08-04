@@ -10,7 +10,7 @@ var DbConn *sql.DB
 
 func SetupDatabase() {
 	var err error
-	DbConn, err = sql.Open("mysql", "root:public@tcp(127.0.0.1:3306)/moviedb")
+	DbConn, err = sql.Open("mysql", "moviews:123456@tcp(dbtrabalho:3306)/moviedb")
 	if err != nil {
 		log.Fatal(err)
 	}
