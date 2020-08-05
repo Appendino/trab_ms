@@ -128,5 +128,28 @@ insert into users(username) values ('axel');
 insert into users(username) values ('henrique');
 insert into users(username) values ('pedro');
 
+insert into watched_movies(userid, moveid) values(1, 1);
+insert into watched_movies(userid, moveid) values(1, 2);
+insert into watched_movies(userid, moveid) values(1, 6);
+insert into watched_movies(userid, moveid) values(1, 30);
+insert into watched_movies(userid, moveid) values(1, 31);
+insert into watched_movies(userid, moveid) values(1, 35);
+insert into watched_movies(userid, moveid) values(1, 40);
+insert into watched_movies(userid, moveid) values(1, 43);
+
+
 create user 'userws' identified by '123456'; 
 grant all on userdb.* to 'userws';
+
+CREATE DATABASE issuedb /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+
+use issuedb;
+
+create table issues (
+  issueid INT NOT NULL AUTO_INCREMENT,
+  username varchar(80) NOT NULL UNIQUE,
+  description varchar(1000) NOT NULL,
+  PRIMARY KEY(issueid));
+
+create user 'issuews' identified by '123456'; 
+grant all on issuedb.* to 'issuews';

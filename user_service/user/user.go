@@ -15,5 +15,5 @@ type Movie struct {
 
 type User struct {
 	UserID int     `json:"userId,omitempty"`
-	Movies []Movie `json:"movie,omitempty"`
+	Movies []Movie `json:"movies,omitempty"`
 }

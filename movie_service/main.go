@@ -3,8 +3,9 @@ package main
 import (
 	"log"
 	"net/http"
-	"os"
+	"strconv"
 
+	"github.com/appendino/trab_ms/movie_service/config"
 	"github.com/appendino/trab_ms/movie_service/database"
 	"github.com/appendino/trab_ms/movie_service/discovery"
 	"github.com/appendino/trab_ms/movie_service/movie"
@@ -16,11 +17,7 @@ const apiBasePath = "/movie"
 func main() {
 	database.SetupDatabase()
 	route := movie.SetupRoutes(apiBasePath)
-	// Registro do servico no Consul
-	hostname, err := os.Hostname()
-	if err != nil {
-		log.Fatal(err)
-	}
-	discovery.RegisterService("consul:8500", "fiap.micro.netflix", hostname, 8088, []string{"movie", "movies", "movieservice"})
-	http.ListenAndServe(":8088", route)
+	discovery.RegisterService(config.CONSUL_SERVER, config.CONSUL_SERVICE_NAME,
+		config.HOSTNAME, config.PORT, config.CONSUL_SEARCH_STRINGS)
+	log.Fatal(http.ListenAndServe(":"+strconv.Itoa(config.PORT), route))
 }

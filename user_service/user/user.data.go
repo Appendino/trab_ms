@@ -42,16 +42,16 @@ func insertList(ids UserMovie) error {
 	return nil
 }
 
-func getWatchedMovies(userId int) ([]int, error){
-	ctx. cancle := context.WithTimeout(context.Background(), 40 * time.Second)
+func getWatchedMovies(userId int) ([]int, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), 40*time.Second)
 	defer cancel()
-	rows, err := database.DbConn.QueryContext(ctx, `select movieId from watched_movies where userid = ?`, userId)
+	rows, err := database.DbConn.QueryContext(ctx, `select movieid from watched_movies where userid = ?`, userId)
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
 	ids := make([]int, 0)
-	for rows.Next(){
+	for rows.Next() {
 		var id int
 		rows.Scan(&id)
 		ids = append(ids, id)
