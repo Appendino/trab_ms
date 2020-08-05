@@ -1,6 +1,10 @@
 # Instruções para execução
 Caso tenha o Go e o docker instalado em sua máquina apenas execute o arquivo: ./cria_env.sh
 
+# Introdução
+## Arquitetura
+![Netflix Case](https://app.lucidchart.com/publicSegments/view/dd021a71-81fa-4ce7-aec9-669c3b5d43d1/image.png)
+
 # Url para os servicos
 ## Serviço de Filmes
 1. Procurar por genero:
